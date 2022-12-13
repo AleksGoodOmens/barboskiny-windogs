@@ -533,3 +533,33 @@ button {
         background: url(img\theme\start\startbuttonenga.png) center center/cover no-repeat;
     }
 }
+.barboskinClassicnothemes {
+    .footer {
+        background-color: #78a6b2;
+    }
+    .window__header {
+        background-color: #3f48cc;
+    }
+    .footer__startbtn {
+        background: url(../img/theme/window/bf8.png) center center/cover no-repeat;
+    }
+    .window__close-btn {
+        background: url(../img/theme/v/xdf.png) center center/cover no-repeat;
+    }
+    .startmenu__footer {
+        background-color: #bdbdbd;
+    }
+    .allPrograms__container {
+        background-color: #bdbdbd;
+    }
+    .startmenu__main {
+        background-color: #bdbdbd;
+        display: flex;
+    }
+    .settings__btns {
+        background-color: #bdbdbd;
+    }
+    .element {
+        background-color: #bdbdbd;
+    }
+}

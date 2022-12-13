@@ -213,7 +213,11 @@ const settingsWindogs = `
                     </button>
                     <button class="settings__item">
                     <img src="img/theme/window/settings/windowthemes/1 - Copy.png" alt="windogsAcer">
-                    <div class="settings__label">Acer</div>
+                    <div class="settings__label">Acer</div
+                    </button>
+                    <button class="settings__item">
+                        <img src="img/theme/window/settings/windowthemes/3.png" alt="windowsXP">
+                        <div class="settings__label">Barboskin Classic no themes</div>
                 </button>
                 </div>
             </div>

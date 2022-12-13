@@ -407,3 +407,32 @@ button {
 .windogsAcer .footer__startbtn {
   background: url(imgthemestartstartbuttonenga.png) center center/cover no-repeat;
 }
+
+.barboskinClassicnothemes .footer {
+  background-color: #78a6b2;
+}
+.barboskinClassicnothemes .window__header {
+  background-color: #3f48cc;
+}
+.barboskinClassicnothemes .footer__startbtn {
+  background: url(../img/theme/window/bf8.png) center center/cover no-repeat;
+}
+.barboskinClassicnothemes .window__close-btn {
+  background: url(../img/theme/v/xdf.png) center center/cover no-repeat;
+}
+.barboskinClassicnothemes .startmenu__footer {
+  background-color: #bdbdbd;
+}
+.barboskinClassicnothemes .allPrograms__container {
+  background-color: #bdbdbd;
+}
+.barboskinClassicnothemes .startmenu__main {
+  background-color: #bdbdbd;
+  display: flex;
+}
+.barboskinClassicnothemes .settings__btns {
+  background-color: #bdbdbd;
+}
+.barboskinClassicnothemes .element {
+  background-color: #bdbdbd;
+}
