@@ -1,71 +1,227 @@
 'use strict';
-const startMenyBtns = document.querySelectorAll('.startmenu__btn'),
-    worktable = document.querySelector('.worktable'),
-    html = document.querySelector('html');
+import recovery from './screens/_recovery.js';
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('hi')
+    recovery.recovery()
+    let loadingFirstScreen = true;
+    // showScreen(loadingFirstScreen,loadingbb)
+    // let normalModeRun;
 
+    //! loading
 
-startMenyBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        newWindow(btn);
-        openWindow(btn);
-        themeColor();
-        selectCustom();
-        changeWallpaper();
-        addWallpaper();
-    });
-});
+    function loadingbb() {
+        appendTo('#body', createElement('pc'));
+        appendTo('.pc', createElement('loading'));
+        appendTo('.loading', createElement('loading__text'),
+        );
+        let h1 = document.querySelector('.loading__text');
+        h1.textContent = 'Barboskiny is loading files';
+        appendTo('.loading', createElement('progress-bar'));
+        appendTo('.progress-bar', createElement('progress-bar__inner'));
+        
 
-function themeColor() {
-    document.querySelectorAll('.theme button').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            html.className = '';
-            let themeName = e.target.getAttribute('alt');
-            html.classList.add(themeName);
-            console.log(html);
-        });
-    });
-}
+        // let progressBar = document.querySelector('.progress-bar__inner');
+        // progressBarChange(progressBar, 10);
 
-function openWindow(window) {
-    let openWindow = document.querySelector('.window');
-    if (window.innerText == 'Settings') {
-        openWindow.querySelector('.window__main').innerHTML = settingsWindogs;
-        const settingsTabs = document.querySelectorAll('.settings__tab'),
-            settingsTabContent = document.querySelectorAll('.settings__tab-content');
-
-        settingsTabs.forEach((tab, tabIndex) => {
-            tab.addEventListener('click', (e) => {
-                settingsTabContent.forEach(tabContent => {
-                    tabContent.classList.remove('settings__tab-content--active');
-                });
-                settingsTabs.forEach((tabElem, tabIndex) => {
-                    tabElem.classList.remove('settings__tab--active');
-
-                });
-                e.target.classList.add('settings__tab--active');
-                settingsTabContent[tabIndex].classList.add('settings__tab-content--active');
-            });
-        });
 
 
     }
-}
 
-function changeWallpaper() {
-    document.querySelectorAll('.wallpaper__img').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            worktable.style.cssText = `background: url(${e.target.getAttribute('src')}) center / cover no-repeat`;
 
+    // recovery();
+    
+    // Boot manager
+    function barboskinyBootManager() {
+        cleanBody();
+        appendTo('#body', createElement('pc'));
+        appendTo('.pc', createElement('recovery'));
+        appendTo('.recovery', createElement('recovery__top'));
+        appendTo('.recovery', createElement('boot-manager', 'div'));
+        
+        putInnerHtml(document.querySelector('.boot-manager'), barboskinyBootManagerHtml);
+        
+        appendTo('.recovery', createElement('recovery__bottom'));
+        putTextContent('.recovery__top', 'Barboskiny Boot Manager')
+        putTextContent('.recovery__bottom', 'Enter-Continue');
+
+        document.addEventListener('keypress', (e) => {
+            if (e.key === "Enter") {
+                cleanBody();
+                screenLoadingFiles();
+            }
         });
-    });
+    }
+
+    // loading files 
+    function screenLoadingFiles() {
+        appendTo('#body', createElement('pc'));
+        appendTo('.pc', createElement('recovery'));
+        appendTo('.recovery', createElement('recovery__top'));
+        appendTo('.recovery', createElement('boot-manager', 'div'));
+        
+        putTextContent('.recovery__top', 'Loading Barboskiny Files')
+        appendTo('.recovery', createElement('progress-bar'));
+        appendTo('.progress-bar', createElement('progress-bar__inner'));
+
+        putTextContent('.progress-bar__inner', 'Please wait...');
+
+        let progressBar = document.querySelector('.progress-bar__inner');
+        progressBarChange(progressBar, 1, 2);
+
+    }
+    // normalMode();
+
+    function normalMode() {
+        appendTo('#body', createElement('pc'));
+        appendTo('.pc', createElement('worktable'));   
+        appendTo('.pc', createElement('footer', 'footer'));
+        putInnerHtml(document.querySelector('.footer'), footer);
+
+        class ItemWithPicture {
+            constructor(parrent, tag, className, alt, src) {
+                this.parrent = document.querySelector(`.${parrent}`)
+                this.tag = tag;
+                this.className = className;
+                this.alt = alt;
+                this.src = src;
+            };
+            createItem() {
+                let newElement = document.createElement(this.tag);
+                newElement.className = this.className;
+                this.parrent.append(newElement);
+
+                let newImg = document.createElement('img');
+                newImg.setAttribute('src', this.src);
+                newImg.setAttribute('alt', this.alt);
+                newElement.append(newImg);
+            };
+        }
+
+        for (let key in worktableIconsObj) {
+            let newbtn = new ItemWithPicture('worktable', 'button', 'icon', key, worktableIconsObj[key]).createItem();
+        }
+
+        const startMenyBtns = document.querySelectorAll('.startmenu__btn'),
+            worktable = document.querySelector('.worktable'),
+            html = document.querySelector('html');
+    
+    
+        startMenyBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                newWindow(btn);
+                openWindow(btn);
+                themeColor();
+                selectCustom();
+                changeWallpaper();
+                addWallpaper();
+            });
+        });
+    
+        function themeColor() {
+            document.querySelectorAll('.theme button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    html.className = '';
+                    let themeName = e.target.getAttribute('alt');
+                    html.classList.add(themeName);
+                    console.log(html);
+                });
+            });
+        }
+    
+        function openWindow(window) {
+            let openWindow = document.querySelector('.window');
+            if (window.innerText == 'Settings') {
+                openWindow.querySelector('.window__main').innerHTML = settingsWindogs;
+                const settingsTabs = document.querySelectorAll('.settings__tab'),
+                    settingsTabContent = document.querySelectorAll('.settings__tab-content');
+    
+                settingsTabs.forEach((tab, tabIndex) => {
+                    tab.addEventListener('click', (e) => {
+                        settingsTabContent.forEach(tabContent => {
+                            tabContent.classList.remove('settings__tab-content--active');
+                        });
+                        settingsTabs.forEach((tabElem, tabIndex) => {
+                            tabElem.classList.remove('settings__tab--active');
+    
+                        });
+                        e.target.classList.add('settings__tab--active');
+                        settingsTabContent[tabIndex].classList.add('settings__tab-content--active');
+                    });
+                });
+    
+    
+            }
+        }
+    
+        function changeWallpaper() {
+            document.querySelectorAll('.wallpaper__img').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    worktable.style.cssText = `background: url(${e.target.getAttribute('src')}) center / cover no-repeat`;
+    
+                });
+            });
+        }
+    
+        function selectCustom() {
+            const element = document.querySelector('#select');
+            const choices = new Choices(element, {
+                itemSelectText: '',
+            });
+        }
+    
+        
+    
+        function chekForTextContent(element) {
+            for (let i = 0; i < element.children.length; i++) {
+                if (element.children[i].textContent != '') {
+                    return element.children[i].textContent;
+                }
+            }
+            // element.children.forEach(element => {
+            //     if (element.textContent) {
+            //         return element.textContent;
+            //     }
+            // })
+        }
+    
+        
+    }
+});
+
+// cenario functions 
+function cleanBody() {
+    const body = document.querySelector('#body');
+    body.innerHTML = '';
 }
 
-function selectCustom() {
-    const element = document.querySelector('#select');
-    const choices = new Choices(element, {
-        itemSelectText: '',
-    });
+
+function progressBarChange(inner, value, duration) {
+    duration= duration*10
+    let currentValue = 0;
+    let start = setInterval(progressBarAction, duration);
+    function progressBarAction() {
+        inner.style.width = currentValue + '%';
+        currentValue += value;
+        console.log('tic', duration);
+        if (currentValue > 100) {
+            clearInterval(start);
+        }
+        
+    }
+    console.log(start);
+    // return true;
 }
+
+function showScreen(screen, bilderFunction){
+    if (!screen) {
+        return
+        }
+        if(screen) {
+            setTimeout(bilderFunction,10)
+        }
+    }
+
+// general functions 
 
 function newWindow(window) {
     //created window
@@ -87,10 +243,10 @@ function newWindow(window) {
     headerbtns.innerHTML = `<button class="window__close-btn"></button>`;
     controlsHeader.className = 'controls-header';
     controlsHeader.innerHTML = `<div class="controls-header">
-    <button class="controls-header__btn"><img src="img/theme/window/be/ui/arrow-left-removebg-preview.png" alt=""></button>
-    <button class="controls-header__btn"><img src="img/theme/window/be/ui/arrow-right-removebg-preview.png" alt=""></button>
-    <div class="controls-header__search"><input type="search" name="search" id="search"><button class="controls-header__btn"><img src="img/theme/window/be/ui/arrow-up-removebg-preview.png" alt=""></button></div>
-    <button class="controls-header__btn"><img src="img/theme/window/be/ui/arrow-reverse-removebg-preview.png" alt=""></button>
+<button class="controls-header__btn"><img src="img/theme/window/be/ui/arrow-left-removebg-preview.png" alt=""></button>
+<button class="controls-header__btn"><img src="img/theme/window/be/ui/arrow-right-removebg-preview.png" alt=""></button>
+<div class="controls-header__search"><input type="search" name="search" id="search"><button class="controls-header__btn"><img src="img/theme/window/be/ui/arrow-up-removebg-preview.png" alt=""></button></div>
+<button class="controls-header__btn"><img src="img/theme/window/be/ui/arrow-reverse-removebg-preview.png" alt=""></button>
 </div>`;
 
     header.append(headerName, headerbtns, controlsHeader);
@@ -116,27 +272,6 @@ function newWindow(window) {
     document.body.append(newWindow);
     subjx(newWindow).drag();
 }
-
-function chekForTextContent(element) {
-    for (let i = 0; i < element.children.length; i++) {
-        if (element.children[i].textContent != '') {
-            return element.children[i].textContent;
-        }
-    }
-    // element.children.forEach(element => {
-    //     if (element.textContent) {
-    //         return element.textContent;
-    //     }
-    // })
-}
-
-function createElement(className, element = 'div') {
-    let newItem = document.createElement(element);
-    newItem.classList.add(className);
-    return newItem;
-}
-
-
 
 // windows contents
 const aside = `
@@ -183,7 +318,8 @@ const aside = `
             <span>Networks</span>
         </button>
     </li>
-</ul>`
+</ul>
+`;
 const settingsWindogs = `
             <div class="settings__tabs">
                 <div class="settings__tab settings__tab--active">Theme</div>
@@ -259,5 +395,164 @@ const settingsWindogs = `
                 <button class="settings__btn">Cancel</button>
                 <button class="settings__btn">Ok</button>
             </div>
-            `;
+`;
+// screen content 
+let barboskinyBootManagerHtml = `
+    <p>Barboskiny failed to start. A recent hardware or software change might be the cause To fix the problem</p>
+    <ol>
+        <li>Insert your Barboskiny installation disc and restart your computer.</li>
+        <li>Choose your language settings, and then click "Next"</li>
+        <li>Click "Repair this Computer."</li>
+    </ol>
+    <p>If you do not have disc, contact you system administrator or computer manufact for assistance.</p>
+    <p>Status 0xc0000225</p>
+    <p>Info: Barboskiny failed to load because the NLS data is missing or corrupt</p>
+`
 
+// footer 
+const footer = `
+        <button class="footer__startbtn">
+        </button>
+        <div class="startmenu">
+            <header class="startmenu__header">
+                <div class="startmenu__logo"><img src="img/theme/startmenu/icon/logo.png" alt="logo"></div>
+                <div class="startmenu__name">Nikita Gomeniuk</div>
+            </header>
+            <main class="startmenu__main">
+                <div class="startmenu__item">
+                    <button class="startmenu__btn">
+                        <img src="img/theme/startmenu/icon/removebg/1-removebg-preview.png" alt="">
+                        <span>Barboskiny Narrator</span>
+                    </button>
+                    <button class="startmenu__btn">
+                        <img src="img/theme/startmenu/icon/removebg/2-removebg-preview.png" alt="">
+                        <span>Barboskiny Zoom</span>
+                    </button>
+                    <button class="startmenu__btn">
+                        <img src="img/theme/startmenu/icon/removebg/3-removebg-preview.png" alt="">
+                        <span>On-Screen Keyboard</span>
+                    </button>
+                    <button class="startmenu__btn">
+                        <img src="img/theme/startmenu/icon/removebg/4.png" alt="">
+                        <span>Duolingo</span>
+                    </button>
+                    <button class="startmenu__btn">
+                        <img src="img/theme/startmenu/icon/removebg/5-removebg-preview.png" alt="">
+                        <span>Barboskiny Bob</span>
+                    </button>
+                    <button class="startmenu__btn allPrograms">
+                        <span>All Programs</span>
+                        <img src="img/theme/startmenu/icon/removebg/arrow-right.png" alt="">
+                        <div class="allPrograms__container">
+                            <ul class="allPrograms__items">
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/f.png" alt=""></div>
+                                    <div class="allPrograms__name">Barboskiny Ease or Access</div>
+                                    <div class="allPrograms__arrow"><img src="img/theme/startmenu/allprograns/icon/arrow.png" alt=""></div>
+                                </li>
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/f.png" alt=""></div>
+                                    <div class="allPrograms__name">Open Server panel</div>
+                                    <div class="allPrograms__arrow"><img src="img/theme/startmenu/allprograns/icon/arrow.png" alt=""></div>
+                                </li>
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/f.png" alt=""></div>
+                                    <div class="allPrograms__name">git</div>
+                                    <div class="allPrograms__arrow"><img src="img/theme/startmenu/allprograns/icon/arrow.png" alt=""></div>
+                                </li>
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/f.png" alt=""></div>
+                                    <div class="allPrograms__name">Node.js</div>
+                                    <div class="allPrograms__arrow"><img src="img/theme/startmenu/allprograns/icon/arrow.png" alt=""></div>
+                                </li>
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/f.png" alt=""></div>
+                                    <div class="allPrograms__name">Barboskiny flash player</div>
+                                    <div class="allPrograms__arrow"><img src="img/theme/startmenu/allprograns/icon/arrow.png" alt=""></div>
+                                </li>
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/f.png" alt=""></div>
+                                    <div class="allPrograms__name">Barboskiny office</div>
+                                    <div class="allPrograms__arrow"><img src="img/theme/startmenu/allprograns/icon/arrow.png" alt=""></div>
+                                </li>
+                            </ul>
+                            <ul class="allPrograms__items">
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/explorer.png" alt=""></div>
+                                    <div class="allPrograms__name">Barboskiny explorer</div>
+                                </li>
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/BMP.png" alt=""></div>
+                                    <div class="allPrograms__name">Barboskiny media player</div>
+                                </li>
+                                <li class="allPrograms__item">
+                                    <div class="allPrograms__icon"><img src="img/theme/startmenu/allprograns/icon/BM.png" alt=""></div>
+                                    <div class="allPrograms__name">Barboskiny maps</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </button>
+                </div>
+                <div class="divider"></div>
+                <div class="startmenu__item">
+                    <button class="startmenu__btn">
+                        <span>Computer</span>
+                        <img src="img/theme/startmenu/icon/removebg/6-removebg-preview.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>Network</span>
+                        <img src="img/theme/startmenu/icon/removebg/7-removebg-preview.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>Music</span>
+                        <img src="img/theme/startmenu/icon/removebg/8-removebg-preview.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>Document</span>
+                        <img src="img/theme/startmenu/icon/removebg/document.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>Settings</span>
+                        <img src="img/theme/startmenu/icon/removebg/10-removebg-preview.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>Downloads</span>
+                        <img src="img/theme/startmenu/icon/removebg/11-removebg-preview.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>Picture</span>
+                        <img src="img/theme/startmenu/icon/removebg/picture.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>Videos</span>
+                        <img src="img/theme/startmenu/icon/removebg/12-removebg-preview.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>The logo is BP</span>
+                        <img src="img/theme/startmenu/icon/removebg/13-removebg-preview.png" alt="">
+                    </button>
+                    <button class="startmenu__btn">
+                        <span>The lofi is pbs Kids</span>
+                        <img src="img/theme/startmenu/icon/removebg/14-removebg-preview.png" alt="">
+                    </button>
+                </div>
+            </main>
+            <footer class="startmenu__footer">
+                <button class="startmenu__lock-btn"></button>
+                <button class="startmenu__off-btn"></button>
+            </footer>
+        </div>
+`
+
+
+// Object storage
+
+const worktableIconsObj = {
+    bin: 'img/theme/icons/bin-removebg-preview.png',
+    videomaker: 'img/theme/icons/barboskinyvideoedito-removebg-preview.png',
+    bb: 'img/theme/icons/barboskinybrowserisrbg.png',
+    duolingo: 'img/theme/icons/duo-removebg-preview.png',
+    bs: 'img/theme/icons/bs-removebg-preview.png'
+};
+
+const recoveryLinksArray = ['Safe mode', 'Safe mode with Network','Safe mode Barboskiny Command', 'Repair this computer', 'Start Windogs Normal', 'nikita']
