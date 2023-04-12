@@ -1,16 +1,29 @@
+@font-face {
+    font-family: 'BarboskinsAkzident';
+    src: url('../font/BarboskinsAkzident.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     padding: 0;
+    font-family: BarboskinsAkzident;
 }
 * {
     box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5 {
+    margin: 0;
+    padding: 0;
 }
 button {
     cursor: pointer;
 }
 .worktable {
     background: url(../img/BarboskinyWindogsWallpaper.png) center / cover no-repeat;
-    height: 100vh;
+    height: 100%;
     display: grid;
     grid-template: repeat(3, 80px) / 80px;
     grid-auto-rows: 80px;
@@ -563,3 +576,7 @@ button {
         background-color: #bdbdbd;
     }
 }
+@import 'screens/safemod';
+@import 'screens/recovery';
+@import 'screens/bootManager';
+@import 'screens/installations';
